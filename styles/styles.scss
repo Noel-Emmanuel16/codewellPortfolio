@@ -1,0 +1,325 @@
+// Variables
+$bg-color: #121212;
+$gray-container: #333;
+$text-color: rgb(233, 233, 233);
+$transition: all ease 300ms;
+
+@mixin flex($direction, $vertposition, $horizposition) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $vertposition;
+  justify-content: $horizposition;
+}
+
+// Global styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Times New Roman", Times, serif;
+  line-height: 1.5;
+  color: $text-color;
+}
+
+.fixed-container:first-child,
+.fixed-container:last-child {
+  margin: 0 auto;
+}
+.fixed-container {
+  max-width: 90%;
+  margin: 4rem auto;
+
+  .content {
+    @include flex(row, center, space-between);
+    div {
+      width: 45%;
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      p {
+        margin: 1.5rem 0;
+      }
+    }
+  }
+
+  .footer-content {
+    padding: 1rem 0;
+
+    @include flex(row, center, space-between);
+
+    ul {
+      @include flex(row, center, space-between);
+
+      li {
+        list-style: none;
+        margin: 0 2rem;
+      }
+    }
+  }
+}
+
+body {
+  max-width: 100%;
+  min-height: 100vh;
+  background: $bg-color;
+}
+
+// Navbar
+
+nav {
+  width: 100%;
+  padding: 1rem 0;
+  @include flex(row, center, space-between);
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  ul {
+    @include flex(row, center, space-between);
+
+    li {
+      list-style: none;
+      margin: 0 2rem;
+
+      a {
+        text-decoration: none;
+
+        font-size: 1rem;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .mobile-cta,
+  .cta-btn {
+    text-decoration: none;
+    color: $text-color;
+    background: rgb(185, 185, 0);
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    display: inline-block;
+    transition: $transition;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+  .hamburger-menu,
+  .mobile-cta,
+  .close-btn {
+    display: none;
+  }
+
+  .close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: #000;
+    color: $text-color;
+    font-size: 2rem;
+    border-radius: 50%;
+    width: auto;
+    height: auto;
+    padding: 0.2rem 1rem;
+  }
+}
+
+// Hero
+
+.headline {
+  h1 {
+    font-size: 3.2rem;
+    word-break: normal;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
+}
+
+// Banner, Logos, Gray container
+.logos,
+.banner {
+  @include flex(row, center, space-between);
+  width: 100%;
+}
+
+.banner {
+  figure {
+    width: 45%;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+}
+
+.gray-container,
+footer {
+  background: $gray-container;
+  padding: 1rem 0;
+  height: auto;
+}
+
+.contact {
+  h1 {
+    font-size: 2.5rem;
+  }
+  p {
+    margin: 1rem 0;
+  }
+
+  .cta-btn {
+    text-decoration: none;
+    color: $text-color;
+    background: rgb(185, 185, 0);
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    display: inline-block;
+    transition: $transition;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  nav {
+    .logo {
+      font-size: 1.2rem;
+    }
+    .cta-btn {
+      display: none;
+    }
+
+    ul {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: $gray-container;
+      width: 100%;
+      height: 100vh;
+      transition: $transition;
+      padding: 1rem;
+      display: none;
+
+      li {
+        a {
+          font-size: 1.2rem;
+        }
+      }
+    }
+    .hamburger-menu,
+    .mobile-cta,
+    .close-btn {
+      display: block;
+    }
+
+    .mobile-cta {
+      width: 100%;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+  }
+
+  .show {
+    @include flex(column, center, space-between);
+  }
+
+  .headline {
+    h1 {
+      font-size: 1.8rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+ 
+  .banner {
+    @include flex(column, center, space-between);
+    width: 100%;
+  }
+
+  .logos{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+   justify-items: center;
+   align-items: center;
+
+   img{
+     margin: 0.3rem;
+   }
+  }
+
+  .banner {
+    figure {
+      width: 100%;
+
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+      figcaption {
+        h1 {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+
+  .fixed-container {
+    max-width: 90%;
+    margin: 4rem auto;
+
+    .content {
+      @include flex(column, center, space-between);
+      div {
+        width: 100%;
+
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          margin: 1.2rem 0;
+        }
+      }
+    }
+
+    .footer-content {
+      padding: 1rem 0;
+    
+      @include flex(row, center, space-between);
+
+      ul {
+        @include flex(row, center, space-between);
+
+        li {
+          list-style: none;
+          margin: 0 1rem;
+        }
+      }
+    }
+  }
+
+  .contact {
+    h1 {
+      font-size: 1.5rem;
+    }
+    p {
+      margin: 1rem 0;
+    }
+  }
+
+  br{
+    display: none;
+  }
+}
